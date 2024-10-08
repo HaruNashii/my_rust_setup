@@ -15,9 +15,9 @@ fi
 
 
 # Create Aliases
-echo "CODE=$HOME/Code" >> $HOME/.bashrc
-echo "DOWNLOADS=$HOME/Downloads/" >> $HOME/.bashrc
-echo "NEW_GIT_REPO=sh $HOME/Code/bash/git_init_repo.sh" >> $HOME/.bashrc
+echo "export CODE=$HOME/Code" >> $HOME/.bashrc
+echo "export DOWNLOADS=$HOME/Downloads/" >> $HOME/.bashrc
+echo "export NEW_GIT_REPO=$HOME/Code/bash/git_init_repo.sh" >> $HOME/.bashrc
 
 
 # Connect Git to your github account
