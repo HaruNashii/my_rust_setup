@@ -1,28 +1,33 @@
 #!/bin/bash
 
+
 if command -v apt &> /dev/null; then
 	# Install the Apps that i use while programming
 	sudo apt install ranger tmux git wget
 fi
 
+
 if command -v pacman &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo pacman -Sy ranger neovim tmux git wget
-else 
-	# Install Neovim latest version direct from github to prevent plugins not working because of an old version of Neovim
-	# Its inside the Pacman check, because if you don't have pacman so your distro may be not Bleeding Edge, and may have problems with the version of neovim
-	# I know that exist others Bleeding Edges distros out there, but this scripts its not made for public use and i don't use these distros, so yeah...
-	if command -v nvim &> /dev/null; then
-		clear
-		echo "Already Installed, Skipping..."
-	else
-		curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
-		sudo rm -rf /opt/nvim
-		sudo tar -C /opt -xzf nvim-linux64.tar.gz
-		echo "export PATH="$PATH:/opt/nvim-linux64/bin"" >> $HOME/.bashrc
-	fi
+	sudo pacman -Sy ranger tmux git wget
 fi
 
+if command -v dnf &> /dev/null; then 
+	# Install the Apps that i use while programming
+	sudo dnf install ranger tmux git wget 
+fi
+
+
+# Install Neovim latest version direct from github to prevent plugins not working because of an old version of Neovim
+if command -v nvim &> /dev/null; then
+	clear
+	echo "Already Installed, Skipping..."
+else
+	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+	sudo rm -rf /opt/nvim
+	sudo tar -C /opt -xzf nvim-linux64.tar.gz
+	echo "export PATH="$PATH:/opt/nvim-linux64/bin"" >> $HOME/.bashrc
+fi
 
 
 # Install rustup  latest version from the official site (https://rustup.rs/)
@@ -32,7 +37,6 @@ if command -v cargo &> /dev/null; then
 else 
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
-
 
 
 # Install the latest GCM (Git Credential Manager) direct from the github if isn't already installed
