@@ -1,12 +1,12 @@
 #!/bin/bash
 
 if command -v apt &> /dev/null; then
-	sudo apt install cargo tmux git wget
+	sudo apt install cargo ranger tmux git wget
 fi
 
 if command -v pacman &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo pacman -Sy rustup neovim tmux git wget
+	sudo pacman -Sy rustup ranger neovim tmux git wget
 	rustup default stable
 else 
 	# Install Neovim latest version direct from github to prevent plugins not working because of an old version of Neovim
