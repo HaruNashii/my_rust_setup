@@ -5,8 +5,27 @@
 git-credential-manager github login
 # Set my git name as the same name as my PC User
 git config --global user.name $(whoami)
+# Ask and set my git email
+clear
+read -p "Your Email: " email
+git config --global user.email $email
 # Set my default git initial branch as "main"
 git config --global init.defaultBranch main
+
+
+# apply my git-credential-manager (GCM) config
+# MY CONFIG IS NOT SECURE, SO IF YOU NEED MORE PROTECTION PLEASE CHANGE IT
+#---- This option works out of the box with any Graphical Interface, Window Manager and Operational System. (but it logout after some time)
+#git config --global credential.credentialStore cache
+
+#---- This option needs one graphical interface like "Gnome", "Kde" and Etc. ("Window Manager" won't work out of the box.)
+#git config --global credential.credentialStore secretservice
+
+#---- This option is not secure. if you use this, be careful!.
+git config --global credential.credentialStore plaintext
+
+#---- This option needs "gpd" and "pass" and configuration.
+#git config --global credential.credentialStore gpg
 
 
 # Install my TMUX config 
