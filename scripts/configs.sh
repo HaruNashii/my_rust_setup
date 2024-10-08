@@ -1,6 +1,25 @@
 #!/bin/bash
 
 
+# Create my code directories
+mkdir -p $HOME/Code/rust
+mkdir -p $HOME/Code/bash
+
+
+# Move my script to create a new github repo to work with my alias
+if [ -f "$HOME/Code/bash/git_init_repo.sh" ]; then 
+	echo "File already exist, Skipping..."
+else
+	cp $PWD/scripts/git_init_repo.sh $HOME/Code/bash/
+fi
+
+
+# Create Aliases
+echo "CODE=$HOME/Code" >> $HOME/.bashrc
+echo "DOWNLOADS=$HOME/Downloads/" >> $HOME/.bashrc
+echo "NEW_GIT_REPO=sh $HOME/Code/bash/git_init_repo.sh" >> $HOME/.bashrc
+
+
 # Connect Git to your github account
 git-credential-manager github login
 # Set my git name as the same name as my PC User
@@ -62,8 +81,3 @@ else
 fi
 
 
-# Create my code directories
-mkdir -p $HOME/Code/rust
-# Create Aliases
-echo "CODE=$HOME/Code" >> $HOME/.bashrc
-echo "DOWNLOADS=$HOME/Downloads/" >> $HOME/.bashrc

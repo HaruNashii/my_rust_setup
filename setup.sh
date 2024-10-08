@@ -1,6 +1,7 @@
 #!/bin/bash
 
 if command -v apt &> /dev/null; then
+	# Install the Apps that i use while programming
 	sudo apt install cargo ranger tmux git wget
 fi
 
