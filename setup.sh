@@ -2,13 +2,12 @@
 
 if command -v apt &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo apt install cargo ranger tmux git wget
+	sudo apt install ranger tmux git wget
 fi
 
 if command -v pacman &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo pacman -Sy rustup ranger neovim tmux git wget
-	rustup default stable
+	sudo pacman -Sy ranger neovim tmux git wget
 else 
 	# Install Neovim latest version direct from github to prevent plugins not working because of an old version of Neovim
 	# Its inside the Pacman check, because if you don't have pacman so your distro may be not Bleeding Edge, and may have problems with the version of neovim
@@ -23,6 +22,17 @@ else
 		echo "export PATH="$PATH:/opt/nvim-linux64/bin"" >> $HOME/.bashrc
 	fi
 fi
+
+
+
+# Install rustup  latest version from the official site (https://rustup.rs/)
+if command -v cargo &> /dev/null; then 
+	clear 
+	echo "Already Installed, Skipping..."
+else 
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+fi
+
 
 
 # Install the latest GCM (Git Credential Manager) direct from the github if isn't already installed
