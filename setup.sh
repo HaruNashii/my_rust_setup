@@ -3,19 +3,24 @@
 
 if command -v apt &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo apt install ranger tmux git wget
+	sudo apt install ranger tmux git wget zsh
 fi
 
 
 if command -v pacman &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo pacman -Sy ranger tmux git wget
+	sudo pacman -Sy ranger tmux git wget zsh
 fi
 
 if command -v dnf &> /dev/null; then 
 	# Install the Apps that i use while programming
-	sudo dnf install ranger tmux git wget 
+	sudo dnf install ranger tmux git wget zsh
 fi
+
+
+
+# Install Oh-My_Zah with the official download command from (https://ohmyz.sh/#install)
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 
 # Install Neovim latest version direct from github to prevent plugins not working because of an old version of Neovim
@@ -26,7 +31,6 @@ else
 	curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
 	sudo rm -rf /opt/nvim
 	sudo tar -C /opt -xzf nvim-linux64.tar.gz
-	echo "export PATH="$PATH:/opt/nvim-linux64/bin"" >> $HOME/.bashrc
 fi
 
 

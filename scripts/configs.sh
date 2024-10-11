@@ -14,19 +14,15 @@ else
 fi
 
 
-# Create Aliases
-echo "export CODE=$HOME/Code" >> $HOME/.bashrc
-echo "export DOWNLOADS=$HOME/Downloads/" >> $HOME/.bashrc
-echo "export NEW_GIT_REPO=$HOME/Code/bash/git_init_repo.sh" >> $HOME/.bashrc
-
-
 # Connect Git to your github account
 git-credential-manager github login
 # Set my git name as the same name as my PC User
-git config --global user.name $(whoami)
+clear
+read -p "Your Github Name: " name
+git config --global user.name $name
 # Ask and set my git email
 clear
-read -p "Your Email: " email
+read -p "Your Github Email: " email
 git config --global user.email $email
 # Set my default git initial branch as "main"
 git config --global init.defaultBranch main
@@ -45,6 +41,18 @@ git config --global credential.credentialStore plaintext
 
 #---- This option needs "gpd" and "pass" and configuration.
 #git config --global credential.credentialStore gpg
+
+# Install my oh-my-zsh config 
+if ![ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then 
+	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+fi
+
+if [ -d "$HOME/.zshrc" ]; then 
+	mkdir -p $PWD/backups
+	mv $HOME/.zshrc $PWD/backups
+fi
+cp $PWD/my_configs/.zshrc $HOME/
+chsh -s /bin/zsh
 
 
 # Install my TMUX config 
