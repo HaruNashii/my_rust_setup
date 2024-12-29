@@ -5,7 +5,6 @@
 mkdir -p $HOME/Code/rust
 mkdir -p $HOME/Code/bash
 
-
 # Move my script to create a new github repo to work with my alias
 if [ -f "$HOME/Code/bash/git_init_repo.sh" ]; then 
 	echo "File already exist, Skipping..."
@@ -13,17 +12,19 @@ else
 	cp $PWD/scripts/git_init_repo.sh $HOME/Code/bash/
 fi
 
-
 # Connect Git to your github account
 git-credential-manager github login
-# Set my git name as the same name as my PC User
+
+# ask and set my git name
 clear
 read -p "Your Github Name: " name
 git config --global user.name $name
+
 # Ask and set my git email
 clear
 read -p "Your Github Email: " email
 git config --global user.email $email
+
 # Set my default git initial branch as "main"
 git config --global init.defaultBranch main
 
@@ -63,7 +64,7 @@ fi
 mkdir -p ~/.config/tmux/plugins/catppuccin
 git clone https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux
 echo "run $HOME/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux" >> $HOME/.config/tmux/tmux.conf
-
+echo "set -g mouse on" >> ~/.tmux.conf
 
 # Install my Neovim config 
 if [ -f "$PWD/my_configs/init.lua" ]; then
@@ -80,7 +81,7 @@ if [ -f "$PWD/my_configs/init.lua" ]; then
 	fi
 
 	# Implement my config
-	mkdir $HOME/.config/nvim
+	mkdir -p $HOME/.config/nvim
 	cp $PWD/my_configs/init.lua $HOME/.config/nvim
 	clear 
 	echo "Remember to run 'PlugInstall' when you run Neovim for the first time"
