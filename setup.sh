@@ -9,7 +9,7 @@ fi
 
 if command -v pacman &> /dev/null; then
 	# Install the Apps that i use while programming
-	sudo pacman -Sy ranger tmux git wget zsh
+	sudo pacman -Sy --needed ranger tmux git wget zsh
 fi
 
 if command -v dnf &> /dev/null; then 
@@ -62,8 +62,5 @@ else
 	rm -rf $temp_folder_to_gcm
 fi
 
-
-
 clear
-echo "All Installed, Now Please Run Configs.sh - To Apply My Personal Configs for (Neovim, Tmux and Git)"
-
+echo "All Installed, Now Please Run Configs.sh - To Apply My Personal Configs for (Neovim, Tmux, Oh-My-Zsh and Git)"
