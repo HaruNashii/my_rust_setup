@@ -63,4 +63,4 @@ else
 fi
 
 clear
-echo "All Installed, Now Please Run Configs.sh - To Apply My Personal Configs for (Neovim, Tmux, Oh-My-Zsh and Git)"
+echo "All Installed, Now Please Run configure_apps.sh - To Apply My Personal Configs for (Neovim, Tmux, Oh-My-Zsh and Git)"

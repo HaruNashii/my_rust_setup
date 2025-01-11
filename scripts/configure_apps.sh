@@ -1,6 +1,7 @@
 #!/bin/bash
 
 
+
 # Create my code directories
 mkdir -p $HOME/Code/rust
 mkdir -p $HOME/Code/bash
@@ -86,7 +87,7 @@ if [ -f "$PWD/my_configs/nvim/init.lua" ]; then
 	clear 
 	echo "Remember to run 'PlugInstall' when you run Neovim for the first time"
 else 
-	echo "Not Applying Neovim Config, 'my_configs' folder not found, Please run the script while on the same directory as the script"
+	echo "Not Applying Neovim Config, 'my_configs' folder not found, Please run the script while on the repo root directory"
 fi
 
 
