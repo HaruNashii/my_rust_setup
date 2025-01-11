@@ -52,13 +52,13 @@ if [ -d "$HOME/.zshrc" ]; then
 	mkdir -p $PWD/backups
 	mv $HOME/.zshrc $PWD/backups
 fi
-cp $PWD/my_configs/.zshrc $HOME/
+cp $PWD/my_configs/zsh_config/.zshrc $HOME/
 chsh -s /bin/zsh
 
 
 # Install my TMUX config 
 if [ -d "$HOME/.config/tmux" ]; then 
-	mkdir $PWD/backups
+	mkdir -p $PWD/backups
 	mv $HOME/.config/tmux $PWD/backups
 fi
 mkdir -p ~/.config/tmux/plugins/catppuccin
@@ -67,11 +67,11 @@ echo "run $HOME/.config/tmux/plugins/catppuccin/tmux/catppuccin.tmux" >> $HOME/.
 echo "set -g mouse on" >> ~/.tmux.conf
 
 # Install my Neovim config 
-if [ -f "$PWD/my_configs/init.lua" ]; then
+if [ -f "$PWD/my_configs/nvim/init.lua" ]; then
 	clear
 	# Save your config if exist
 	if [ -d "$HOME/.config/nvim" ]; then
-		mkdir $PWD/backups
+		mkdir -p $PWD/backups
 		mv $HOME/.config/nvim $PWD/backups
 	fi
 
@@ -82,7 +82,7 @@ if [ -f "$PWD/my_configs/init.lua" ]; then
 
 	# Implement my config
 	mkdir -p $HOME/.config/nvim
-	cp $PWD/my_configs/init.lua $HOME/.config/nvim
+	cp $PWD/my_configs/nvim/* $HOME/.config/nvim
 	clear 
 	echo "Remember to run 'PlugInstall' when you run Neovim for the first time"
 else 
