@@ -14,7 +14,7 @@ else
 fi
 
 # Connect Git to your github account
-git-credential-manager github login
+#git-credential-manager github login
 
 # ask and set my git name
 clear
@@ -83,7 +83,7 @@ if [ -f "$PWD/my_configs/nvim/init.lua" ]; then
 
 	# Implement my config
 	mkdir -p $HOME/.config/nvim
-	cp $PWD/my_configs/nvim/* $HOME/.config/nvim
+	cp -rf $PWD/my_configs/nvim/* $HOME/.config/nvim
 	clear 
 	echo "Remember to run 'PlugInstall' when you run Neovim for the first time"
 else 
