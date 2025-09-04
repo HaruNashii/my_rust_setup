@@ -6,15 +6,11 @@
 mkdir -p $HOME/Code/rust
 mkdir -p $HOME/Code/bash
 
-# Move my script to create a new github repo to work with my alias
-if [ -f "$HOME/Code/bash/git_init_repo.sh" ]; then 
-	echo "File already exist, Skipping..."
-else
-	cp $PWD/scripts/git_init_repo.sh $HOME/Code/bash/
-fi
+# Configure Git Credential Manager
+git-credential-manager configure
 
 # Connect Git to your github account
-#git-credential-manager github login
+git-credential-manager github login
 
 # ask and set my git name
 clear
@@ -28,7 +24,6 @@ git config --global user.email $email
 
 # Set my default git initial branch as "main"
 git config --global init.defaultBranch main
-
 
 # apply my git-credential-manager (GCM) config
 # MY CONFIG IS NOT SECURE, SO IF YOU NEED MORE PROTECTION PLEASE CHANGE IT
@@ -44,18 +39,22 @@ git config --global credential.credentialStore plaintext
 #---- This option needs "gpd" and "pass" and configuration.
 #git config --global credential.credentialStore gpg
 
-# Install my oh-my-zsh config 
-if ![ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then 
-	git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+# Install zsh-autosuggestions on oh-my-zsh config 
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then 
+	echo "zsh-autosuggestions Already Installed, Skipping..."
+else 
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 fi
 
-if [ -d "$HOME/.zshrc" ]; then 
+# Install my zsh config
+if [ -f "$HOME/.zshrc" ]; then 
 	mkdir -p $PWD/backups
 	mv $HOME/.zshrc $PWD/backups
 fi
-cp $PWD/my_configs/zsh_config/.zshrc $HOME/
+if [ -f "$PWD/my_configs/zsh_config/.zshrc" ]; then
+	cp $PWD/my_configs/zsh_config/.zshrc $HOME/
+fi
 chsh -s /bin/zsh
-
 
 # Install my TMUX config 
 if [ -d "$HOME/.config/tmux" ]; then 
@@ -77,8 +76,10 @@ if [ -f "$PWD/my_configs/nvim/init.lua" ]; then
 	fi
 
 	# Install my preferred Neovim Plugin Manager (Vim Plug) if isn't already installed
-	if ![ -d ".local/share/nvim/site/autoload/plug.vim" ]; then 
-		sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+	if [ -f "$HOME/.local/share/nvim/site/autoload/plug.vim" ]; then 
+		echo "Neovim Plugin Manager (Vim Plug, Already Installed, Skipping...)"
+	else
+		curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 	fi
 
 	# Implement my config
