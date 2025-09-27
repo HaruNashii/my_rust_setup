@@ -24,7 +24,7 @@ if command -v dnf &> /dev/null; then
 fi
 
 # Install Oh-My_Zsh with the official download command from (https://ohmyz.sh/#install)
-if [ -d "/home/haru/.oh-my-zsh" ]; then
+if [ -d "/home/$(whoami)/.oh-my-zsh" ]; then
 	echo "Oh-My-Zsh Already Installed, Skipping..."
 else
 	
