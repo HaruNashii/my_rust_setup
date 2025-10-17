@@ -65,5 +65,4 @@ export LANG=en_US.UTF-8
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 
-export GIT_INIT_REPO="$HOME/Code/bash/git_init_repo.sh"
 export PATH="$PATH:/opt/nvim-linux64/bin"

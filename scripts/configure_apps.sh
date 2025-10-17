@@ -39,23 +39,6 @@ git config --global credential.credentialStore plaintext
 #---- This option needs "gpd" and "pass" and configuration.
 #git config --global credential.credentialStore gpg
 
-# Install zsh-autosuggestions on oh-my-zsh config 
-if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then 
-	echo "zsh-autosuggestions Already Installed, Skipping..."
-else 
-	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
-fi
-
-# Install my zsh config
-if [ -f "$HOME/.zshrc" ]; then 
-	mkdir -p $PWD/backups
-	mv $HOME/.zshrc $PWD/backups
-fi
-if [ -f "$PWD/my_configs/zsh_config/.zshrc" ]; then
-	cp $PWD/my_configs/zsh_config/.zshrc $HOME/
-fi
-chsh -s /bin/zsh
-
 # Install my TMUX config 
 if [ -d "$HOME/.config/tmux" ]; then 
 	mkdir -p $PWD/backups
@@ -91,4 +74,19 @@ else
 	echo "Not Applying Neovim Config, 'my_configs' folder not found, Please run the script while on the repo root directory"
 fi
 
+# Install zsh-autosuggestions on oh-my-zsh config 
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then 
+	echo "zsh-autosuggestions Already Installed, Skipping..."
+else 
+	git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+fi
 
+# Install my zsh config
+if [ -f "$HOME/.zshrc" ]; then 
+	mkdir -p $PWD/backups
+	mv $HOME/.zshrc $PWD/backups
+fi
+if [ -f "$PWD/my_configs/zsh_config/.zshrc" ]; then
+	cp $PWD/my_configs/zsh_config/.zshrc $HOME/
+fi
+chsh -s /bin/zsh
