@@ -105,30 +105,42 @@ require("mason").setup({
         },
     }
 })
-require("mason-lspconfig").setup()
-
-
-
--- =====================================
--- ============# RUST TOOLS #===========
--- =====================================
-local rt = require("rust-tools")
-rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      -- Hover actions
-      vim.keymap.set("n", "<C-w>", rt.hover_actions.hover_actions, { buffer = bufnr })
-      -- Code action groups
-      vim.keymap.set("n", "<C-s", rt.code_action_group.code_action_group, { buffer = bufnr })
-    end,
-  },
-})
+require("mason-lspconfig").setup {
+	ensure_installed = { 'rust_analyzer' }
+}
 
 
 
 -- =====================================
 -- =================# LSP #=============
 -- =====================================
+
+vim.lsp.config('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      inlayHints = {
+        enable = true,
+        parameterHints = true,
+        typeHints = true,
+      },
+      cargo = {
+        allFeatures = true,
+      },
+      procMacro = {
+        enable = true,
+      },
+    },
+  },
+
+  on_attach = function(client, bufnr)
+    if client.server_capabilities.inlayHintProvider then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+  end,
+})
+
+
+vim.lsp.enable('rust_analyzer')
 local sign = function(opts)
   vim.fn.sign_define(opts.name, {
     texthl = opts.name,
@@ -160,8 +172,6 @@ vim.cmd([[
 set signcolumn=yes
 autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 ]])
-
-
 
 -- Completion Plugin Setup
 local cmp = require'cmp'

@@ -51,6 +51,7 @@ fi
 if command -v git-credential-manager &> /dev/null; then
 	echo "git-credential-manager Already Installed, Skipping..."
 else
+	echo "Installing git-credential-manager..."
 	temp_folder_to_gcm="/tmp/rust_setup_tmp"
 	link_to_download_gcm="$(curl -S https://api.github.com/repos/git-ecosystem/git-credential-manager/releases/latest | grep browser_download_url | cut -d\" -f4 | grep -v symbols | grep -v asc | grep gcm-linux_amd64.*.tar.gz)"
 	

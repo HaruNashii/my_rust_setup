@@ -13,7 +13,6 @@ Plug('roobert/search-replace.nvim')
 
 -- rust specific
 Plug('saecki/crates.nvim',            { ['tag'] = 'stable' })
-Plug('simrat39/rust-tools.nvim')
 
 -- package managers
 Plug('williamboman/mason.nvim')
